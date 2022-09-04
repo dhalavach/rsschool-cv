@@ -1,2 +1,3 @@
-# https://github.com/dhalavach/rsschool-cv/blob/gh-pages/README.md
+# https://github.com/dhalavach/rsschool-cv/blob/gh-pages/cv.md
+
 g
