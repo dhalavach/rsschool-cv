@@ -12,21 +12,30 @@
 #### Code Example
 
     //Function returning the sum of nested array
+    function formatDuration(seconds) {
 
-    var a1 = [5, 7, [4, [2], 8, [1, 3], 2], [9, []], 1, 8];
+var secondsNumber = { year: 31536000, day: 86400, hour: 3600, minute: 60, second: 1 },
+result = [];
 
-    function sumNestedArray(i) {
-      var sum = 0;
-      for (var a = 0; a < i.length; a++) {
-        if (typeof i[a] == "number") {
-          sum += i[a];
-        } else if (i[a] instanceof Array) {
-          sum += sumNestedArray(i[a]);
-        }
-      }
-      return sum;
-    }
-    console.log(sumNestedArray(a1));
+if (seconds === 0) return "now";
+
+for (var key in secondsNumber) {
+if (seconds >= secondsNumber[key]) {
+var val = Math.floor(seconds / secondsNumber[key]);
+result.push((val += val > 1 ? " " + key + "s" : " " + key));
+seconds = seconds % secondsNumber[key];
+}
+}
+
+return result.length > 1
+? result.join(", ").replace(/,([^,]\*)$/, " and" + "$1")
+: result[0];
+}
+
+return result.length > 1
+? result.join(", ").replace(/,([^,]\*)$/, " and" + "$1")
+: result[0];
+}
 
 #### English Level
 
