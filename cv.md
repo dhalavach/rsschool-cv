@@ -11,25 +11,21 @@
 
 #### Code Example
 
-    //Function returning human readable date
+    //Function to sort an array of 32-bit integers
+    //in ascending order of the number of on bits they have.
 
-    function formatDuration(seconds) {
-    var secondsNumber = { year: 31536000, day: 86400, hour: 3600, minute: 60, second: 1 },
-        result = [];
-
-    if (seconds === 0) return "now";
-
-    for (var key in secondsNumber) {
-        if (seconds >= secondsNumber[key]) {
-        var val = Math.floor(seconds / secondsNumber[key]);
-        result.push((val += val > 1 ? " " + key + "s" : " " + key));
-        seconds = seconds % secondsNumber[key];
-        }
+    function sortByBit(arr) {
+    function bitCounter(n) {
+        return n.toString(2).replace(/0/g, "").length;
     }
 
-    return result.length > 1
-        ? result.join(", ").replace(/,([^,]*)$/, " and" + "$1")
-        : result[0];
+    function comparator(a, b) {
+        return bitCounter(a) - bitCounter(b) == 0
+        ? a - b
+        : bitCounter(a) - bitCounter(b);
+    }
+
+    return arr.sort(comparator);
     }
 
 #### English Level
