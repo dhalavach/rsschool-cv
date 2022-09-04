@@ -11,31 +11,26 @@
 
 #### Code Example
 
-    //Function returning the sum of nested array
+    //Function returning human readable date
+
     function formatDuration(seconds) {
+    var secondsNumber = { year: 31536000, day: 86400, hour: 3600, minute: 60, second: 1 },
+        result = [];
 
-var secondsNumber = { year: 31536000, day: 86400, hour: 3600, minute: 60, second: 1 },
-result = [];
+    if (seconds === 0) return "now";
 
-if (seconds === 0) return "now";
+    for (var key in secondsNumber) {
+        if (seconds >= secondsNumber[key]) {
+        var val = Math.floor(seconds / secondsNumber[key]);
+        result.push((val += val > 1 ? " " + key + "s" : " " + key));
+        seconds = seconds % secondsNumber[key];
+        }
+    }
 
-for (var key in secondsNumber) {
-if (seconds >= secondsNumber[key]) {
-var val = Math.floor(seconds / secondsNumber[key]);
-result.push((val += val > 1 ? " " + key + "s" : " " + key));
-seconds = seconds % secondsNumber[key];
-}
-}
-
-return result.length > 1
-? result.join(", ").replace(/,([^,]\*)$/, " and" + "$1")
-: result[0];
-}
-
-return result.length > 1
-? result.join(", ").replace(/,([^,]\*)$/, " and" + "$1")
-: result[0];
-}
+    return result.length > 1
+        ? result.join(", ").replace(/,([^,]*)$/, " and" + "$1")
+        : result[0];
+    }
 
 #### English Level
 
